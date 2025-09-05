@@ -25,9 +25,13 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://student-management-app-8c6ae.web.app', // Your Angular app URL
+  origin: [
+    'https://student-management-app-8c6ae.web.app',
+    'https://utiliko-b0f2a.web.app'
+  ],
   credentials: true
 }));
+
 
 app.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.url}`);
