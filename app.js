@@ -25,7 +25,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:4200', // Your Angular app URL
+  origin: 'https://student-management-app-8c6ae.web.app', // Your Angular app URL
   credentials: true
 }));
 
