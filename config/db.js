@@ -1,4 +1,5 @@
-import mysql from "mysql2";
+import fs from "fs";
+import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -8,10 +9,9 @@ const pool = mysql.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  ssl: {
-    rejectUnauthorized: true,
-    ca: process.env.DB_CA_CERT  // CA cert will come from Render env var
-  }
+  ssl: process.env.DB_SSL === "true" ? {
+    ca: fs.readFileSync(process.env.DB_CA_CERT, "utf8")
+  } : false
 });
 
 export default pool;
